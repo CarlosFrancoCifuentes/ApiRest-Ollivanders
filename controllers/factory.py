@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api
-from controller.items import Items
+from controllers.items import Items
+from controllers.objetos import Objetos
 
 def create_app():
     app = Flask(__name__)
@@ -11,6 +12,7 @@ def create_app():
             return {'hello': 'Ollivanders'}
 
     api.add_resource(WelcomeOllivanders, '/')
-    api.add_resource(Items, '/')
+    api.add_resource(Items, '/item/<name>')
+    api.add_resource(Objetos, '/objeto/<name>')
 
     return app

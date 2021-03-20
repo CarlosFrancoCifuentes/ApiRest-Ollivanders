@@ -4,7 +4,7 @@ from services.services import Service
 
 
 
-class Items(Resource):
+class Objetos(Resource):
 
     def get(self, name):
-        return Service.get_item(name), 200
+        return Service.get_objeto(name), 200

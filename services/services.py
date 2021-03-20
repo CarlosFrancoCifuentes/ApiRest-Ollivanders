@@ -10,4 +10,4 @@ class Service:
 
         if not items:
             abort(404, "No existe ningún item {}".format(name))
-        return items
+        return { 'name': items[0], 'sell_in': items[1], 'quality': items[2] }
