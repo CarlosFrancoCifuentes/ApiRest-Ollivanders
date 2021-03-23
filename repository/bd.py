@@ -12,8 +12,8 @@ class BD():
                     # ["Conjured Mana Cake", 3, 6]
                     ]
 
-    objetos = [AgedBrie("Aged Brie", 2, 0), \
-                NormalItem("Exlicir of the Mongoose", 5, 7)]
+    objetos = [NormalItem("Aged Brie", 2, 0), \
+                NormalItem("Elixir of the Mongoose", 5, 7)]
     
     @classmethod
     def get_item(cls, name):
