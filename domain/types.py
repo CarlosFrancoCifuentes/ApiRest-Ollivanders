@@ -35,7 +35,7 @@ class Item:
     def sell_in(self, value):
         self.__sell_in = value
 
-    @sell_in.setter
+    @quality.setter
     def quality(self, value):
         self.__quality = value
     
