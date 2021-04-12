@@ -1,9 +1,15 @@
-from flask_restful import abort
+from flask_restful import abort, fields, marshal_with
 from repository.bd import BD
 
 
 class Service:
+    resource_fields = {
+        "name": fields.String,
+        "sell_in": fields.Integer,
+        "quality": fields.Integer,
+    }
     @staticmethod
+    @marshal_with(resource_fields)
     def get_item(name):
         if not name:
             abort(404, "Es necesario un nombre de Item")

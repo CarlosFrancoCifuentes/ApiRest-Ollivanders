@@ -29,8 +29,8 @@ class BD:
 
     @classmethod
     def get_item(cls, name):
-        objeto = Inventario.query.filter_by(name = name).first()
-        return str(objeto)
+        objeto = db.session.query(Inventario).filter_by(name = name).all()
+        return objeto
 
     @classmethod
     def get_objeto(cls, name):
