@@ -2,8 +2,7 @@ from flask import Flask
 from flask_restful import Resource, Api
 from controllers.items import Items
 from controllers.objetos import Objetos
-from repository.models import db
-from repository.bd import BD
+from repository.bd import BD, db
 app = Flask(__name__)
 api = Api(app)
 db.init_app(app)
