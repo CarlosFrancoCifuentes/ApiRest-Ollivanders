@@ -8,10 +8,7 @@ class Service:
         if not name:
             abort(404, "Es necesario un nombre de Item")
         items = BD.get_item(name)
-
-        if not items:
-            abort(404, "No existe ningún item {}".format(name))
-        return {"name": items[0], "sell_in": items[1], "quality": items[2]}
+        return items
 
     @staticmethod
     def get_objeto(name):

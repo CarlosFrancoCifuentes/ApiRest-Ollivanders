@@ -6,6 +6,7 @@ from controllers.objetos import Objetos
 def create_app():
     app = Flask(__name__)
     api = Api(app)
+
     class WelcomeOllivanders(Resource):
         def get(self):
             return {"hello": "Ollivanders"}

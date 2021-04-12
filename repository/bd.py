@@ -1,28 +1,36 @@
 from domain.types import AgedBrie, NormalItem
-
+from repository.models import Inventario, db
+from sqlalchemy import create_engine
+from flask import jsonify
 
 class BD:
-    inventario = [
-        ["+5 Dexterity Vest", 10, 20],
-        ["Aged Brie", 2, 0],
-        ["Elixir of the Mongoose", 5, 7],
-        ["Sulfuras, Hand of Ragnaros", 0, 80],
-        ["Sulfuras, Hand of Ragnaros", -1, 80],
-        ["Backstage passes to a TAFKAL80ETC concert", 15, 20],
-        ["Backstage passes to a TAFKAL80ETC concert", 10, 49],
-        ["Backstage passes to a TAFKAL80ETC concert", 5, 49],
-        # ["Conjured Mana Cake", 3, 6]
-    ]
+    
+    def poblar_bd(self):
+        aged_brie = Inventario(name = "Aged Brie", sell_in = 2, quality = 0)
+        dexterity_vest = Inventario(name = "Dexterity Vest", sell_in = 10, quality = 20)
+        elixir_of_the_mongoose = Inventario(name = "Elixir Of The Mongoose", sell_in = 5, quality = 7)
+        sulfuras1 = Inventario(name = "Sulfuras, Hand of Ragnaros", sell_in = 0, quality = 80)
+        sulfuras2 = Inventario(name = "Sulfuras, Hand of Ragnaros", sell_in = -1, quality = 80)
+        back_stage1 = Inventario(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 15, quality = 20)
+        back_stage2 = Inventario(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 10, quality = 49)
+        back_stage3 = Inventario(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 5, quality = 49)
+        
+        db.session.add(aged_brie)
+        db.session.add(dexterity_vest)
+        db.session.add(elixir_of_the_mongoose)
+        db.session.add(sulfuras1)
+        db.session.add(sulfuras2)
+        db.session.add(back_stage1)
+        db.session.add(back_stage2)
+        db.session.add(back_stage3)
 
-    objetos = [
-        NormalItem("Aged Brie", 2, 0),
-        NormalItem("Elixir of the Mongoose", 5, 7),
-    ]
+        db.session.commit()
+    
 
     @classmethod
     def get_item(cls, name):
-        items = cls.inventario
-        return [item for item in items if item[0] == name][0]
+        objeto = Inventario.query.filter_by(name = name).first()
+        return str(objeto)
 
     @classmethod
     def get_objeto(cls, name):
