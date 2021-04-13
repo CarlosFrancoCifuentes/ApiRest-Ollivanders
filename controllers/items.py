@@ -8,15 +8,20 @@ class Items(Resource):
 
     def post(self):
         args = self.parseRequest()
-        Service.postItem(args)
-        return '', 201
-    
+        Service.post_item(args)
+        return 'Item publicado con exito', 201
+
+    def delete(self):
+        args = self.parseRequest()
+        Service.delete_item(args)
+        return 'Item eliminado con exito', 204
+
     def parseRequest(self):
         parser = reqparse.RequestParser(bundle_errors=True)
         parser.add_argument('name', type=str, required=True,
-                            help='name required')
+                            help='introduce el nombre')
         parser.add_argument('sell_in', type=int, required=True,
-                            help='sellIn required')
+                            help='introduce un sellIn')
         parser.add_argument('quality', type=int, required=True,
-                            help='quality required')
+                            help='introduce una quality')
         return parser.parse_args()

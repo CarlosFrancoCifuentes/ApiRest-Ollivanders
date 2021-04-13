@@ -1,5 +1,4 @@
 from domain.types import AgedBrie, NormalItem
-from sqlalchemy import create_engine
 from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os

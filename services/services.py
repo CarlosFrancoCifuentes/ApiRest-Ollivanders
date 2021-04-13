@@ -28,6 +28,20 @@ class Service:
 
     @staticmethod
     def post_item(args):
-        item = Inventario(name = args['name'], sell_in = args['sell_in'], quality = ['quality'])
+        item = Inventario(name = args['name'], sell_in = args['sell_in'], quality = args['quality'])
         db.session.add(item)
         db.session.commit()
+
+    @staticmethod
+    def delete_item(args):
+        item = db.session.query(Inventario).filter_by(name = args['name'], sell_in = args['sell_in'], quality = args['quality']).first()
+        db.session.delete(item)
+        db.session.commit()
+        
+    @staticmethod
+    def inventory():
+        objetos = db.session.query(Inventario).all()
+        lista = []
+        for objeto in objetos:
+            lista.append({"name": objeto.name, "sell_in": objeto.sell_in, "quality": objeto.quality})
+        return lista
