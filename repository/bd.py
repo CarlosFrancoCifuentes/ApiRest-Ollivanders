@@ -19,8 +19,6 @@ class Inventario(db.Model):
 
 class BD:
 
-
-    
     def poblar_bd(self):
         aged_brie = Inventario(name = "Aged Brie", sell_in = 2, quality = 0)
         dexterity_vest = Inventario(name = "Dexterity Vest", sell_in = 10, quality = 20)

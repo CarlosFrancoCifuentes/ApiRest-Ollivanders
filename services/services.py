@@ -1,5 +1,5 @@
 from flask_restful import abort, fields, marshal_with
-from repository.bd import BD
+from repository.bd import BD, db, Inventario
 
 
 class Service:
@@ -25,3 +25,9 @@ class Service:
         if not items:
             abort(404, "No existe ningún item {}".format(name))
         return {"name": items.name, "sell_in": items.sell_in, "quality": items.quality}
+
+    @staticmethod
+    def post_item(args):
+        item = Inventario(name = args['name'], sell_in = args['sell_in'], quality = ['quality'])
+        db.session.add(item)
+        db.session.commit()
