@@ -1,5 +1,6 @@
 import pytest
 from controllers.factory import create_app
+
 @pytest.fixture
 def client():
     app = create_app()
