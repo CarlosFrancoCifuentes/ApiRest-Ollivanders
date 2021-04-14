@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, g
 from flask_restful import Resource, Api, reqparse, fields, marshal_with
 from services.services import Service
-from repository.bd import BD, Inventario
+from repository.bd import BD, Inventario, db
 
 
 class Items(Resource):
@@ -21,7 +21,7 @@ class Items(Resource):
     def delete(self):
         response = ""
         args = self.parseRequest()
-        item = g.db.session.query(Inventario).filter_by(name = args['name'], sell_in = args['sell_in'], quality = args['quality']).first()
+        item = db.session.query(Inventario).filter_by(name = args['name'], sell_in = args['sell_in'], quality = args['quality']).first()
         if not item:
             response = 'El item no existe'
         else:

@@ -1,6 +1,6 @@
 from flask_restful import abort, fields, marshal_with
-from repository.bd import BD, Inventario
-from repository.bd import db
+from repository.bd import BD, Inventario, db
+
 
 class Service:
     resource_fields = {
