@@ -62,3 +62,11 @@ class Service:
 
         return item_quality
 
+    @staticmethod
+    def sell_in(args):
+        db = get_db()
+
+        item_sell_in = db.session.query(Item).filter_by(sell_in= args['sell_in'])
+
+        return item_sell_in
+
