@@ -1,23 +1,19 @@
 from flask import Flask, jsonify, g
-from flask_restful import Resource, Api, reqparse, fields, marshal_with
+from flask_restful import Resource, Api, reqparse
 from services.services import Service
 from repository.db import BD, Item, db
 
 
 class Items(Resource):
-    resource_fields = {
-        "response": fields.String
-    }
+
     def get(self, name):
         return {"items": Service.get_item(name)}, 200
 
-    @marshal_with(resource_fields)
     def post(self):
         args = self.parseRequest()
         Service.post_item(args)
         return {'response': 'Item publicado con exito'}, 201
-
-    @marshal_with(resource_fields)
+        
     def delete(self):
         response = ""
         args = self.parseRequest()
