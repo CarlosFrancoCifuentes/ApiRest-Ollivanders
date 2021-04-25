@@ -46,9 +46,17 @@ class Service:
         db = get_db()
 
         for item in db.session.query(Item).all():
-            objetoItem = BD.crear_objetos([item.name, item.sell_in, item.quality])
-            objetoItem.update_quality()
+            objeto_item = BD.crear_objetos([item.name, item.sell_in, item.quality])
+            objeto_item.update_quality()
 
             db.session.commit()
         return Service.inventory()
+
+    @staticmethod
+    def quality(args):
+        db = get_db()
+
+        item_quality = db.session.query(Item).filter_by({quality: args['quality']})
+
+        return item_quality
 
