@@ -10,6 +10,6 @@ def create_app():
 
     api.add_resource(WelcomeOllivanders, "/")
     api.add_resource(Items, "/item/<name>")
-    api.add_resource(Objetos, "/objeto/<name>")
+    api.add_resource(Inventory, '/inventory')
 
     return app

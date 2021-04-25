@@ -17,14 +17,26 @@ class BD:
         {"name": "Backstage passes to a TAFKAL80ETC concert", "sell_in": 10, "quality": 49},
         {"name": "Backstage passes to a TAFKAL80ETC concert", "sell_in": 5, "quality": 49}]
         return inventario
+
+    clasesItems = {
+            "Sulfuras Hand of Ragnaros": "Sulfuras",
+            "Aged Brie": "AgedBrie",
+            "Backstage passes to a TAFKAL80ETC concert": "BackstagePasses",
+            "Conjured Mana Cake": "Conjured",
+            "+5 Dexterity Vest": "Conjured",
+            "Normal Item": "NormalItem",
+        }
+
+    def crear_objetos(self, item):
+
+        nombre_item = item[0]
+        if nombre_item == self.clasesItems[nombre_item]:
+            return eval(nombre_item + str(tuple(item)))
+        else: 
+            return eval(self.clasesItems["Normal Item"] + str(tuple(item)))
     
 
     @classmethod
     def get_item(cls, name):
         objeto = db.session.query(Item).filter_by(name = name).all()
         return objeto
-
-    @classmethod
-    def get_objeto(cls, name):
-        items = cls.objetos
-        return [item for item in items if item.name == name][0]

@@ -40,3 +40,6 @@ class Service:
         for objeto in objetos:
             result["inventory"].append({"name": objeto.name, "sell_in": objeto.sell_in, "quality": objeto.quality})
         return result
+
+    @staticmethod
+    def update_quality():
