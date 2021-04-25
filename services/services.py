@@ -2,6 +2,7 @@ from flask_restful import abort, fields, marshal_with
 from repository.db_connect import get_db
 from repository.db import BD
 from repository.models import Item
+
 class Service:
     resource_fields = {
         "name": fields.String,
@@ -44,11 +45,12 @@ class Service:
     @staticmethod
     def update_quality():
         db = get_db()
-
+        base = BD()
         for item in db.session.query(Item).all():
-            objeto_item = BD.crear_objetos([item.name, item.sell_in, item.quality])
+            objeto_item = base.crear_objetos([item.name, item.sell_in, item.quality])
             objeto_item.update_quality()
-
+            item.sell_in = objeto_item.sell_in
+            item.quality = objeto_item.quality
             db.session.commit()
         return Service.inventory()
 
@@ -56,7 +58,7 @@ class Service:
     def quality(args):
         db = get_db()
 
-        item_quality = db.session.query(Item).filter_by({quality: args['quality']})
+        item_quality = db.session.query(Item).filter_by(quality= args['quality'])
 
         return item_quality
 

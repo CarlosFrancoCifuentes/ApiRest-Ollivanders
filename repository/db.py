@@ -1,4 +1,4 @@
-from domain.types import AgedBrie, NormalItem
+from domain.types import *
 from flask import jsonify
 from repository.models import Item
 from flask import current_app as app
@@ -14,26 +14,27 @@ class BD:
         {"name": "Sulfuras, Hand of Ragnaros", "sell_in": 0, "quality": 80},
         {"name": "Sulfuras, Hand of Ragnaros", "sell_in": -1, "quality": 80},
         {"name": "Backstage passes to a TAFKAL80ETC concert", "sell_in": 15, "quality": 20},
-        {"name": "Backstage passes to a TAFKAL80ETC concert", "sell_in": 10, "quality": 49},
-        {"name": "Backstage passes to a TAFKAL80ETC concert", "sell_in": 5, "quality": 49}]
+        {"name": "Backstage passes to a TAFKAL80ETC concert", "sell_in": 10, "quality": 30},
+        {"name": "Backstage passes to a TAFKAL80ETC concert", "sell_in": 5, "quality": 30}]
         return inventario
 
-    clasesItems = {
-            "Sulfuras Hand of Ragnaros": "Sulfuras",
-            "Aged Brie": "AgedBrie",
-            "Backstage passes to a TAFKAL80ETC concert": "BackstagePasses",
-            "Conjured Mana Cake": "Conjured",
-            "+5 Dexterity Vest": "Conjured",
-            "Normal Item": "NormalItem",
-        }
+
 
     def crear_objetos(self, item):
+        dictClassesItems = {
+            "Sulfuras, Hand of Ragnaros": "Sulfuras",
+            "Aged Brie": "AgedBrie",
+            "Backstage passes to a TAFKAL80ETC concert": "Backstage",
+            "Conjured mana cake": "ConjuredItem",
+            "Normal Item": "NormalItem",
+        }
+        try:
+            nombre_item = item[0]
+            classItem = dictClassesItems[nombre_item]
+        except KeyError:
+            classItem = dictClassesItems["Normal Item"]
 
-        nombre_item = item[0]
-        if nombre_item == self.clasesItems[nombre_item]:
-            return eval(nombre_item + str(tuple(item)))
-        else: 
-            return eval(self.clasesItems["Normal Item"] + str(tuple(item)))
+        return eval(classItem + str(tuple(item)))
     
 
     @classmethod

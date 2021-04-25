@@ -12,10 +12,6 @@ class Quality(Resource):
 
     def parseRequest(self):
         parser = reqparse.RequestParser(bundle_errors=True)
-        parser.add_argument('name', type=str, required=True,
-                            help='introduce el nombre')
-        parser.add_argument('sell_in', type=int, required=True,
-                            help='introduce un sellIn')
         parser.add_argument('quality', type=int, required=True,
                             help='introduce una quality')
         return parser.parse_args()
