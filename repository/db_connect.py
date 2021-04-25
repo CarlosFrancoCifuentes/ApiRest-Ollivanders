@@ -29,7 +29,7 @@ def init_db():
         db.session.add(item_añadido)
         db.session.commit()
 
-@click.command('init_db_command')
+@click.command('db')
 @with_appcontext
 def init_db_command():
     init_db()
