@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api
 from controllers.items import Items
-from controllers.objetos import Objetos
+from controllers.inventory import Inventory
 from controllers.welcome import WelcomeOllivanders
 
 def create_app():

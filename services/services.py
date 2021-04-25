@@ -43,3 +43,12 @@ class Service:
 
     @staticmethod
     def update_quality():
+        db = get_db()
+
+        for item in db.session.query(Item).all():
+            objetoItem = BD.crear_objetos([item.name, item.sell_in, item.quality])
+            objetoItem.update_quality()
+
+            db.session.commit()
+        return Service.inventory()
+
