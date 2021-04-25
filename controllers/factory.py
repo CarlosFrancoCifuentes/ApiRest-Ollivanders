@@ -5,6 +5,7 @@ from controllers.inventory import Inventory
 from controllers.welcome import WelcomeOllivanders
 from controllers.update_quality import Update_quality
 from controllers.quality import Quality
+from controllers.sell_in import Sell_in
 
 def create_app():
     app = Flask(__name__)
@@ -15,5 +16,6 @@ def create_app():
     api.add_resource(Inventory, '/inventory')
     api.add_resource(Update_quality, '/update_quality')
     api.add_resource(Quality, '/quality')
+    api.add_resource(Sell_in, '/sell_in')
 
     return app

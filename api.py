@@ -5,6 +5,8 @@ from controllers.inventory import Inventory
 from controllers.quality import Quality
 from controllers.welcome import WelcomeOllivanders
 from controllers.update_quality import Update_quality
+from controllers.sell_in import Sell_in
+
 
 from repository import db_connect
 from flask_cors import CORS
@@ -19,6 +21,8 @@ api.add_resource(Items, '/item/<name>', '/item')
 api.add_resource(Inventory, '/inventory')
 api.add_resource(Update_quality, '/update_quality')
 api.add_resource(Quality, '/quality')
+api.add_resource(Sell_in, '/sell_in')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
