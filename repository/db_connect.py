@@ -23,6 +23,7 @@ def init_db():
     db = get_db()
     poblar = BD()
     inventario = poblar.poblar_bd()
+    db.drop_all()
     db.create_all()
     for item in inventario:
         item_añadido = Item(name=item["name"], sell_in=item["sell_in"], quality=item["quality"])
